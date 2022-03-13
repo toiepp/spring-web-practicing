@@ -1,11 +1,8 @@
-<%--
-  User: mikholskiyivan
-  Date: 3/12/22 2:50 PM
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--@elvariable id="customer" type="me.mikholskiy.domains.Customer"--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Confirmation</title>
+    <title>Customer confirmation</title>
 </head>
 <body>
 First name: <strong>${customer.firstName}</strong>
