@@ -2,9 +2,7 @@ package me.mikholskiy.domains;
 
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 public class Customer {
 	private String firstName = null;
@@ -14,6 +12,8 @@ public class Customer {
 	@Min(value = 0, message = "should be positive")
 	@Max(value = 10, message = "should be less then 10")
 	private int freePasses;
+	@Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "only 5 symbols")
+	private String postalCode;
 
 	public Customer() {
 	}
@@ -40,6 +40,14 @@ public class Customer {
 
 	public void setFreePasses(int freePasses) {
 		this.freePasses = freePasses;
+	}
+
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
 	}
 
 	@Override

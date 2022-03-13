@@ -10,6 +10,7 @@
 </head>
 <body>
 
+<%--@elvariable id="student" type="me.mikholskiy.domains.Student"--%>
 <form:form action="/process-form" modelAttribute="student" method="get">
     First name: <form:input path="firstName"/>
     <br><br>
