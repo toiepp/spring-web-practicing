@@ -8,5 +8,7 @@
 First name: <strong>${customer.firstName}</strong>
 <br>
 Last name: <strong>${customer.lastName}</strong>
+<br>
+Free passes: <strong>${customer.freePasses}</strong>
 </body>
 </html>
