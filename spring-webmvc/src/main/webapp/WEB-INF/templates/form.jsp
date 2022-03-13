@@ -13,7 +13,7 @@
 <form:form action="/process-form" modelAttribute="student" method="get">
     First name: <form:input path="firstName"/>
     <br><br>
-    Last name: <form:input path="lastName"/>
+    Last name: <form:input path="lastName"/> <form:errors path="lastName" cssClass="field-error"/>
     <br><br>
     Age: <form:input path="age"/>
     <br><br>

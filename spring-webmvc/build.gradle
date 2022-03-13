@@ -6,19 +6,50 @@ plugins {
 group 'me.mikholskiy'
 version '1.0-SNAPSHOT'
 
+def hibernateVersion = '7.0.4.Final'
+def junitVersion = '5.8.2'
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
-    // https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:' + junitVersion
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:' + junitVersion
+
     implementation 'org.springframework:spring-webmvc:5.3.16'
+
     // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
-    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
-    // https://mvnrepository.com/artifact/javax.servlet/jstl
+    compileOnly group: 'javax.servlet',
+            name: 'javax.servlet-api',
+            version: '4.0.1'
+
     implementation 'javax.servlet:jstl:1.2'
+
+    implementation group: 'org.hibernate',
+            name: 'hibernate-validator',
+            version: hibernateVersion
+
+    implementation group: 'org.hibernate',
+            name: 'hibernate-validator-cdi',
+            version: hibernateVersion
+
+    testImplementation group: 'org.glassfish',
+            name: 'jakarta.el',
+            version: '4.0.1'
+
+    implementation group: 'javax.validation',
+            name: 'validation-api',
+            version: '2.0.1.Final'
+
+    implementation group: 'jakarta.el',
+            name: 'jakarta.el-api',
+            version: '4.0.0'
+
+
+    implementation group: 'javax.el',
+            name: 'javax.el-api',
+            version: '3.0.0'
 }
 
 test {

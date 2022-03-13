@@ -1,11 +1,16 @@
 package me.mikholskiy.domains;
 
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Student {
 	private String firstName;
+	@NotNull(message = "field is required")
+	@Length(min = 1, message = "field is required")
 	private String lastName;
 	private String age;
 	private String country;

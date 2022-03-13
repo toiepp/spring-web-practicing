@@ -13,7 +13,7 @@ public class WebAppContext {
 	@Bean
 	public InternalResourceViewResolver viewResolver() {
 		return new InternalResourceViewResolver(
-				"/WEB-INF/views/",
+				"/WEB-INF/templates/",
 				".jsp"
 		);
 	}
