@@ -1,19 +1,30 @@
 package me.mikholskiy.domains;
 
+import me.mikholskiy.validation.courseCode.CourseCode;
+import me.mikholskiy.validation.nameSyntax.NameSyntax;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.*;
 
 public class Customer {
+	@NameSyntax
 	private String firstName = null;
-	@NotNull(message = "is required")
-	@Length(min = 1, message = "is required")
+
+	@NotNull
+	@Length(min = 2, max = 20)
+	@NameSyntax
 	private String lastName = null;
-	@Min(value = 0, message = "should be positive")
-	@Max(value = 10, message = "should be less then 10")
+
+	@Min(value = 0)
+	@Max(value = 10)
 	private int freePasses;
-	@Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "only 5 symbols")
+
+	@Pattern(regexp = "^[a-zA-Z0-9]{5}")
 	private String postalCode;
+
+	@NotEmpty(message = "shouldn't be blank")
+	@CourseCode(value = "GEN", message = "should start with GEN")
+	private String courseCode;
 
 	public Customer() {
 	}
@@ -48,6 +59,14 @@ public class Customer {
 
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
+	}
+
+	public String getCourseCode() {
+		return courseCode;
+	}
+
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
 	}
 
 	@Override

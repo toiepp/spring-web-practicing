@@ -16,6 +16,8 @@
     <br><br>
     Postal code: <form:input path="postalCode"/> <form:errors path="postalCode" cssClass="field-error"/>
     <br><br>
+    Course code: <form:input path="courseCode"/> <form:errors path="courseCode" cssClass="field-error"/>
+    <br><br>
     <input type="submit" value="Submit"/>
 </form:form>
 

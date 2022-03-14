@@ -10,7 +10,8 @@ public class WebAppDispatcherServletInitializer extends AbstractAnnotationConfig
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[]{WebAppContext.class};
+		return new Class[]{WebConfig
+				.class};
 	}
 
 	@Override

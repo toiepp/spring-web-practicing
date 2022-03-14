@@ -5,10 +5,7 @@ import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Calendar;
@@ -26,11 +23,12 @@ public class CustomerController {
 		return "customer/form";
 	}
 
-	@GetMapping("/confirmation")
+	@GetMapping(value = "/confirmation")
 	public String customerConfirmation(
 			@ModelAttribute("customer") @Valid Customer customer,
-			BindingResult bindingResult) {
-		System.out.printf("\u001B[34m[%s] %s\u001B[39m\n", Calendar.getInstance().getTime(), bindingResult);
+			BindingResult bindingResult
+	) {
+		System.out.printf("\u001b[34m[%s] %s\u001b[39m\n", Calendar.getInstance().getTime(), bindingResult);
 
 		return "customer/%s".formatted(
 				(bindingResult.hasErrors()) ? "form" : "confirmation"
