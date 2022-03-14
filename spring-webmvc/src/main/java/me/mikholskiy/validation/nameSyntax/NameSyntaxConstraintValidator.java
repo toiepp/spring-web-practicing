@@ -6,6 +6,6 @@ import javax.validation.ConstraintValidatorContext;
 public class NameSyntaxConstraintValidator implements ConstraintValidator<NameSyntax, String> {
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		return Character.isUpperCase(value.charAt(0));
+		return value == null || Character.isUpperCase(value.charAt(0));
 	}
 }

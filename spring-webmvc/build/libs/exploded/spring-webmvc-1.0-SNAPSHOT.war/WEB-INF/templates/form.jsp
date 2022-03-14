@@ -12,7 +12,7 @@
 
 <%--@elvariable id="student" type="me.mikholskiy.domains.Student"--%>
 <form:form action="/process-form" modelAttribute="student" method="get">
-    First name: <form:input path="firstName"/>
+    First name: <form:input path="firstName"/> <form:errors path="firstName" cssClass="field-error"/>
     <br><br>
     Last name: <form:input path="lastName"/> <form:errors path="lastName" cssClass="field-error"/>
     <br><br>
