@@ -7,7 +7,6 @@ group 'me.mikholskiy'
 version '1.0-SNAPSHOT'
 
 def springVersion = '5.3.16'
-def hibernateVersion = '6.2.0.Final'
 
 repositories {
     mavenCentral()
@@ -22,13 +21,17 @@ dependencies {
             name: 'spring-webmvc',
             version: springVersion
 
+    implementation group: 'org.springframework',
+            name: 'spring-orm',
+            version: springVersion
+
     implementation group: 'javax.servlet',
             name: 'jstl',
             version: '1.2'
 
     implementation group: 'org.hibernate',
             name: 'hibernate-validator',
-            version: hibernateVersion
+            version: '6.2.0.Final'
 
     implementation group: 'javax.validation',
             name: 'validation-api',
@@ -37,6 +40,17 @@ dependencies {
     testImplementation group: 'org.glassfish',
             name: 'jakarta.el',
             version: '4.0.1'
+
+    // Hibernate ORM requirements
+    // Hibernate Core
+    implementation group: 'org.hibernate',
+            name: 'hibernate-core',
+            version: '5.6.5.Final'
+
+    // PostgreSQL JDBC Driver
+    implementation group: 'org.postgresql',
+            name: 'postgresql',
+            version: '42.3.3'
 }
 
 test {

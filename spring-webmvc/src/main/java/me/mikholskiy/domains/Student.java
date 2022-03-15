@@ -1,27 +1,39 @@
 package me.mikholskiy.domains;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "students")
 public class Student {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int id;
+
+	@Column(name = "first_name")
 	private String firstName;
+
+	@Column(name = "last_name")
 	private String lastName;
-	private String age;
-	private String country;
-	private String progLang;
-	private List<String> operatingSystems;
 
-	private Map<String, String> countryOptions = new LinkedHashMap<>();
-
-	{
-		countryOptions.put(/*value*/"BR", /*label*/"Brazil");
-		countryOptions.put("FR", "France");
-		countryOptions.put("DE", "Germany");
-		countryOptions.put("RU", "Russia");
-	}
+	@Column(name = "email")
+	private String email;
 
 	public Student() {
+	}
+
+	public Student(String firstName, String lastName, String email) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -40,49 +52,21 @@ public class Student {
 		this.lastName = lastName;
 	}
 
-	public String getAge() {
-		return age;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setAge(String age) {
-		this.age = age;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getProgLang() {
-		return progLang;
-	}
-
-	public void setProgLang(String progLang) {
-		this.progLang = progLang;
-	}
-
-	public Map<String, String> getCountryOptions() {
-		return countryOptions;
-	}
-
-	public List<String> getOperatingSystems() {
-		return operatingSystems;
-	}
-
-	public void setOperatingSystems(List<String> operatingSystems) {
-		this.operatingSystems = operatingSystems;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
 	public String toString() {
-		return "Student{" +
-				"firstName='" + firstName + '\'' +
+		return "\u001B[32mStudent{" +
+				"id=[" + id +
+				"], firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
-				", age='" + age + '\'' +
-				", country='" + country + '\'' +
-				'}';
+				", email='" + email + '\'' +
+				"}\u001B[39m";
 	}
 }
