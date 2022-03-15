@@ -1,5 +1,6 @@
 package me.mikholskiy;
 
+import me.mikholskiy.domains.Course;
 import me.mikholskiy.domains.Instructor;
 import me.mikholskiy.domains.InstructorDetails;
 import org.hibernate.Session;
@@ -12,14 +13,11 @@ public class Main {
 				.configure()
 				.addAnnotatedClass(Instructor.class)
 				.addAnnotatedClass(InstructorDetails.class)
-				.buildSessionFactory()) {
-			Session session = sessionFactory.getCurrentSession();
-
+				.addAnnotatedClass(Course.class)
+				.buildSessionFactory();
+				 Session session = sessionFactory.getCurrentSession()) {
 			session.beginTransaction();
 
-			Instructor instructor = new Instructor("Jack", "Silverhand", "mihoho1980@gmail.com");
-
-			session.save(instructor);
 
 			session.getTransaction().commit();
 		}

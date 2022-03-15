@@ -9,10 +9,18 @@ public class InstructorDetails {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 	@Column(name = "youtube_channel", length = 128)
 	private String youtubeChannel;
+
 	@Column(name = "hobby", length = 100)
 	private String hobby;
+
+	@OneToOne(
+			fetch = FetchType.LAZY,
+			mappedBy = "instructorDetails",
+			cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	private Instructor instructor;
 
 	public InstructorDetails() {
 	}
@@ -24,10 +32,6 @@ public class InstructorDetails {
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getYoutubeChannel() {
@@ -44,5 +48,21 @@ public class InstructorDetails {
 
 	public void setHobby(String hobby) {
 		this.hobby = hobby;
+	}
+
+	public Instructor getInstructor() {
+		return instructor;
+	}
+
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
+	}
+
+	@Override
+	public String toString() {
+		return "InstructorDetails{" +
+				"youtubeChannel='" + youtubeChannel + '\'' +
+				", hobby='" + hobby + '\'' +
+				'}';
 	}
 }
