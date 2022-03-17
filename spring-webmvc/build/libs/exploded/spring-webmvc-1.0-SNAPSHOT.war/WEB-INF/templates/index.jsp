@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>Hello, Spring MVC!</h1>
-<a href="show-form">Fill form.</a>
+<a href="student/form">Fill form.</a>
 <br><br>
 <a href="customer/form">For customers</a>
 </body>

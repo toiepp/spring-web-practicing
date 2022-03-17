@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.error {
+  color: red;
+}
+
+.title {
+  background-color: green;
+  font-size: 100px;
+}

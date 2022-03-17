@@ -1,0 +1,15 @@
+jdbc.url: jdbc:postgresql://localhost:5432/spring_database?useSSL=false
+jdbc.username: postgres
+jdbc.password: ''
+jdbc.driverClassName: org.postgresql.Driver
+
+jdbc.minPoolSize: 5
+jdbc.maxPoolSize: 20
+jdbc.maxIdleTime: 30000
+
+hibernate.show_sql: true
+hibernate.format_sql: false
+hibernate.dialect: org.hibernate.dialect.PostgreSQL10Dialect
+
+spring.viewResolver.prefix: /WEB-INF/templates/
+spring.viewResolver.suffix: .jsp

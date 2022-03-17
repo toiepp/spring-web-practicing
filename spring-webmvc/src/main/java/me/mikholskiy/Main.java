@@ -1,6 +1,5 @@
 package me.mikholskiy;
 
-import com.github.tomaslanger.chalk.Chalk;
 import me.mikholskiy.domains.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,12 +18,9 @@ public class Main {
 				 Session session = sessionFactory.getCurrentSession()) {
 			session.beginTransaction();
 
-			Student s = session.get(Student.class, 8);
-			session.remove(s);
-
-			session.createQuery("from Student", Student.class).list().forEach(student -> System.out.println(Chalk.on(student.toString()).blue().underline()));
-
-			session.createQuery("from Course", Course.class).list().forEach(c -> System.out.println(Chalk.on(c.toString()).green()));
+			Student student = session.get(Student.class, 5);
+			student.setEmail("mihoho1980@gmail.com");
+			session.saveOrUpdate(student);
 
 			session.getTransaction().commit();
 		}
