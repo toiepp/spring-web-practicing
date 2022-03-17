@@ -1,6 +1,11 @@
 package me.mikholskiy.domains;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static javax.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "students")
@@ -18,6 +23,12 @@ public class Student {
 
 	@Column(name = "email")
 	private String email;
+
+	@ManyToMany(cascade = {REFRESH, MERGE, PERSIST, DETACH})
+	@JoinTable(name = "course_student",
+			joinColumns = @JoinColumn(name = "student_id"),
+			inverseJoinColumns = @JoinColumn(name = "course_id"))
+	private final List<Course> courses = new ArrayList<>();
 
 	public Student() {
 	}
@@ -60,13 +71,21 @@ public class Student {
 		this.email = email;
 	}
 
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void addCourse(Course... course) {
+		courses.addAll(Arrays.asList(course));
+	}
+
 	@Override
 	public String toString() {
-		return "\u001B[32mStudent{" +
-				"id=[" + id +
-				"], firstName='" + firstName + '\'' +
+		return "Student{" +
+				"id=" + id +
+				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", email='" + email + '\'' +
-				"}\u001B[39m";
+				'}';
 	}
 }
