@@ -13,44 +13,29 @@ repositories {
 }
 
 dependencies {
-    compileOnly group: 'javax.servlet',
-            name: 'javax.servlet-api',
-            version: '4.0.1'
+    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
 
-    implementation group: 'org.springframework',
-            name: 'spring-webmvc',
-            version: springVersion
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: springVersion
 
-    implementation group: 'org.springframework',
-            name: 'spring-orm',
-            version: springVersion
+    implementation group: 'org.springframework', name: 'spring-orm', version: springVersion
 
-    implementation group: 'javax.servlet',
-            name: 'jstl',
-            version: '1.2'
+    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
 
-    implementation group: 'org.hibernate',
-            name: 'hibernate-validator',
-            version: '6.2.0.Final'
+    implementation group: 'org.hibernate', name: 'hibernate-validator', version: '6.2.0.Final'
 
-    implementation group: 'javax.validation',
-            name: 'validation-api',
-            version: '2.0.1.Final'
+    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
-    testImplementation group: 'org.glassfish',
-            name: 'jakarta.el',
-            version: '4.0.1'
+    testImplementation group: 'org.glassfish', name: 'jakarta.el', version: '4.0.1'
 
     // Hibernate ORM requirements
     // Hibernate Core
-    implementation group: 'org.hibernate',
-            name: 'hibernate-core',
-            version: '5.6.5.Final'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.6.5.Final'
 
     // PostgreSQL JDBC Driver
-    implementation group: 'org.postgresql',
-            name: 'postgresql',
-            version: '42.3.3'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.3'
+
+    // Colorizing output
+    implementation group: 'com.github.tomas-langer', name: 'chalk', version: '1.0.2'
 }
 
 test {
