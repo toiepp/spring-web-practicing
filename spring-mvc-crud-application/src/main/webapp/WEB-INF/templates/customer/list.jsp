@@ -18,8 +18,6 @@
         <div id="content">
             <input type="button" value="Add customer"
                    onclick="window.location.href='customer-creation-form'; return false;"/>
-            <input type="button" value="Sort customers"
-                   onclick="window.location.href='list/sort'; return false;">
             <table>
                 <tr>
                     <th>First name</th>

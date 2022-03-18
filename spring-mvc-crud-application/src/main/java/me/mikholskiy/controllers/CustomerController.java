@@ -12,12 +12,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/customer")
@@ -41,11 +44,7 @@ public class CustomerController {
 
 	@GetMapping("/list")
 	public String customerList(@ModelAttribute("list_of_customers") ArrayList<Customer> customers) {
-		if (customers.isEmpty()) {
-			customers.addAll(customerService.getAll());
-		} else {
-			customers.forEach(System.out::println);
-		}
+		customers.addAll(customerService.getAll().stream().sorted(Comparator.comparing(Customer::getLastName)).toList());
 
 		return "customer/list";
 	}
@@ -53,18 +52,6 @@ public class CustomerController {
 	@GetMapping("/customer-creation-form")
 	public String showFormToCreateCustomer(@ModelAttribute("customer") Customer customer) {
 		return "customer/form";
-	}
-
-	@GetMapping("/list/sort")
-	public ModelAndView showSortedCustomersList(@ModelAttribute("list_of_customers") ArrayList<Customer> customers) {
-		List<Customer> allCustomersSorted = customerService.getAll().stream()
-			.sorted(Comparator.comparing(Customer::getFirstName))
-			.toList();
-
-		customers.addAll(allCustomersSorted);
-
-		return new ModelAndView("redirect:/customer/list",
-			new ModelMap("list_of_customers", customers));
 	}
 
 	@PostMapping("/new")
