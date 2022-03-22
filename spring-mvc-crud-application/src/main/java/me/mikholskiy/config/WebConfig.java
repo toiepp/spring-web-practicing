@@ -2,10 +2,7 @@ package me.mikholskiy.config;
 
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -13,9 +10,12 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import java.util.Objects;
+
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
+@EnableAspectJAutoProxy
 @PropertySource("classpath:applicationProps.yml")
 @ComponentScan({"me.mikholskiy"})
 public class WebConfig implements EnvironmentAware {
@@ -24,8 +24,8 @@ public class WebConfig implements EnvironmentAware {
 	@Bean
 	public ViewResolver viewResolver() {
 		return new InternalResourceViewResolver(
-			environment.getProperty("spring.viewResolver.prefix"),
-			environment.getProperty("spring.viewResolver.suffix")
+			Objects.requireNonNull(environment.getProperty("spring.viewResolver.prefix")),
+			Objects.requireNonNull(environment.getProperty("spring.viewResolver.suffix"))
 		);
 	}
 

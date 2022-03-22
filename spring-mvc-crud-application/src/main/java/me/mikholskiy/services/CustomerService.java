@@ -1,8 +1,8 @@
 package me.mikholskiy.services;
 
-import com.github.tomaslanger.chalk.Chalk;
 import me.mikholskiy.daos.Dao;
 import me.mikholskiy.domains.Customer;
+import me.mikholskiy.exceptions.CustomerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;
@@ -21,35 +21,30 @@ public class CustomerService implements Service<Customer> {
 	@Override
 	@Transactional
 	public List<Customer> getAll() {
-		System.out.println(Chalk.on("===[CustomerService::getAll]===").blue().bold());
 		return customerDao.getAll();
 	}
 
 	@Override
 	@Transactional
-	public Optional<Customer> get(int id) {
-		System.out.println(Chalk.on("===[CustomerService::get]===: {id = " + Chalk.on(String.valueOf(id)).yellow()).blue().bold());
+	public Optional<Customer> get(int id) throws CustomerNotFoundException {
 		return customerDao.get(id);
 	}
 
 	@Override
 	@Transactional
 	public void save(Customer customer) {
-		System.out.println(Chalk.on("===[CustomerService::save]===: {" + customer + "}").blue().bold());
 		customerDao.save(customer);
 	}
 
 	@Override
 	@Transactional
 	public void update(Customer customer) {
-		System.out.println(Chalk.on("===[CustomerService::update]===: {" + customer.toString() + "}").blue().bold());
 		customerDao.update(customer);
 	}
 
 	@Override
 	@Transactional
 	public void delete(int id) {
-		System.out.println(Chalk.on("===[CustomerService::delete]===: {id=" + Chalk.on(String.valueOf(id)).yellow() + "}").blue().bold());
 		customerDao.delete(id);
 	}
 }

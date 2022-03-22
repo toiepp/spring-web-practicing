@@ -1,7 +1,7 @@
 package me.mikholskiy.daos;
 
-import com.github.tomaslanger.chalk.Chalk;
 import me.mikholskiy.domains.Customer;
+import me.mikholskiy.exceptions.CustomerNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -17,16 +17,23 @@ public class CustomerDao implements Dao<Customer> {
 		this.sessionFactory = sessionFactory;
 	}
 
+
 	@Override
-	public Optional<Customer> get(int id) {
-		return Optional.ofNullable(sessionFactory.getCurrentSession().get(Customer.class, id));
+	public Optional<Customer> get(int id) throws CustomerNotFoundException {
+		Optional<Customer> customer = Optional.ofNullable(sessionFactory.getCurrentSession().get(Customer.class, id));
+
+		if (customer.isEmpty()) {
+			throw new CustomerNotFoundException("Couldn't find " + Customer.class.getPackageName() + ".Customer with id=" + id);
+		}
+
+		return customer;
 	}
 
 	@Override
 	public List<Customer> getAll() {
 		return sessionFactory.getCurrentSession()
-			.createQuery("from Customer", Customer.class)
-			.getResultList();
+							 .createQuery("from Customer", Customer.class)
+							 .list();
 	}
 
 	@Override
@@ -37,8 +44,6 @@ public class CustomerDao implements Dao<Customer> {
 	@Override
 	public void update(Customer customer) {
 		Session session = sessionFactory.getCurrentSession();
-
-		System.out.println(Chalk.on(customer.toString()).blue().bold());
 
 		session.saveOrUpdate(customer);
 	}
